@@ -6,7 +6,11 @@ function validar(regex, texto) {
     try {
         const re = new RegExp(regex);
         $('.regex-input').classList.remove('vermelho');
-        return re.test(texto);
+        if(re.test(texto)) {
+            $('.text-input').classList.remove('vermelho');
+            return;
+        }
+        $('.text-input').classList.add('vermelho');
     }
     catch(e) {
         $('.regex-input').classList.add('vermelho');
@@ -14,11 +18,9 @@ function validar(regex, texto) {
 }
 
 $('.regex-input').addEventListener('input', function(e) {
-    let a = validar(e.target.value, $('.text-input').value);
-    console.log(a)
+    validar(e.target.value, $('.text-input').value)
 });
 
 $('.text-input').addEventListener('input', function(e) {
-    let a = validar($('.regex-input').value, e.target.value);
-    console.log(a)
+    validar($('.regex-input').value, e.target.value);
 });

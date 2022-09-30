@@ -1,3 +1,7 @@
 .vermelho {
-    background-color: red;
+    background-color: red!important;
+}
+
+input[type="text"]{
+    background-color: green; /* verdinho */
 }
