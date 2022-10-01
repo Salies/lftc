@@ -4,23 +4,32 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/default.css" />
 		<title>LFTC</title>
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
-	<body>
-		<h1>LFTC</h1>
-		<h3>Projeto da disciplina</h3>
-		<b>
-			Carlos Eduardo Fernandes de Santana<br />
-			Daniel Henrique Serezane Pereira<br />
-			Gustavo Becelli do Nacimento
-		</b>
+	<body class="container mx-auto rounded-b-xl">
+		<section
+			class="p-10 flex flex-col items-center justify-center text-center bg-gradient-to-r from-green-300 to-green-400 rounded-b-xl shadow-md shadow-green-500">
+			<h1 class="text-6xl font-bold">
+				Linguagens Formais e Teoria da Computação
+			</h1>
+			<h3 class="text-4xl font-medium m-7">Projetos da disciplina</h3>
+			<h1 class="text-xl font-bold">Alunos integrantes:</h1>
+			<ul class="flex">
+				<li class="m-2">Carlos Eduardo Fernandes de Santana</li>
+				<li class="m-2">Daniel Henrique Serezane Pereira</li>
+				<li class="m-2">Gustavo Becelli do Nacimento</li>
+			</ul>
+		</section>
 
-		<ol>
-			<li>
-				<a href="./projects/regex" target="blank"
-					>Simulador de Expressão Regular</a
-				>
-			</li>
-		</ol>
+		<section class="p-5 rounded-b-xl h-screen">
+			<a href="./projects/regex">
+				<div
+					class="w-full p-5 shadow-md shadow-green-500 hover:scale-110 duration-150 bg-gradient-to-r from-green-300 to-green-400 rounded-xl">
+					<h1 class="text-xl">Simulador de Expressões Regulares</h1>
+				</div>
+			</a>
+		</section>
 	</body>
 </html>
