@@ -12,47 +12,19 @@
 					name="Grammar"
 					cols="40"
 					rows="13"
-					id="grm"
+					id="grammar-rules"
 					class="txtarea">
-            S -> NP VP
-            VP -> VP PP | V NP | V
-            PP -> P NP
-            NP -> Det N | N | Pn | Det A N | A NP
-            A -> Adv A | A A
-            Adv -> too | very | quite
-            Pn -> she | he
-            A -> fresh | tasty | silver
-            N -> fish | fork | apple
-            V -> eats 
-            Det -> a | an | the
-            P -> with</textarea
+					S -> A B
+					A -> a A | a
+					B -> b
+		</textarea
 				>
-			</div>
-
-			<div class="examples">
-				<a href="#" class="example">she eats</a> <br />
-				<a href="#" class="example">she eats an apple</a> <br />
-				<a href="#" class="example">she eats fresh tasty apple</a>
-				<br />
-				<a href="#" class="example">she eats a quite tasty apple</a>
-				<br />
-				<a href="#" class="example">she eats a fish</a> <br />
-				<a href="#" class="example">she eats a fish with a fork</a>
-				<br />
-				<a href="#" class="example"
-					>she eats a fish with a silver fork</a
-				>
-				<br />
-				<a href="#" class="example"
-					>she eats a quite fresh fish with a silver fork</a
-				>
-				<br />
 			</div>
 		</div>
 
 		<div class="parsing">
-			<input type="text" size="50" id="txt" />
-			<div id="dv"></div>
+			<input type="text" size="50" id="user-input" placeholder="a b" />
+			<div id="result-tree"></div>
 		</div>
 	</body>
 	<script src="./js/index.js"></script>

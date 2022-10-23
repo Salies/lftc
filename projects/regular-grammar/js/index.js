@@ -1,49 +1,48 @@
-$('.example').click(function () {
-	$('#txt').val($(this).text());
-	$('#txt').trigger('input');
-	return false;
-});
+const $ = (id) => document.getElementById(id);
 
-function displayTree(tree) {
-	if (!tree.subtrees || tree.subtrees.length == 0) {
+const displayTree = (tree) => {
+	if (!tree.subtrees || tree.subtrees.length == 0)
 		return '<li><a href="#">' + tree.root + '</a></li>';
-	}
-	var builder = [];
+
+	const builder = [];
 	builder.push('<li><a href="#">');
 	builder.push(tree.root);
 	builder.push('</a>');
 	builder.push('<ul>');
-	for (var i in tree.subtrees) {
-		builder.push(displayTree(tree.subtrees[i]));
-	}
+	for (const subtree in tree.subtrees)
+		builder.push(displayTree(tree.subtrees[subtree]));
 	builder.push('</ul>');
 	builder.push('</li>');
 	return builder.join('');
-}
+};
 
-$('#txt').bind('input', function () {
-	var s = $(this).val();
+const main = () => {
+	const input = $('user-input');
+	input.addEventListener('input', function (e) {
+		const stream = e.target.value;
+		const tokenStream = stream.trim().split(' ');
 
-	var tokenStream = s.trim().split(' ');
+		const rules = $('grammar-rules').value.trim().split('\n');
 
-	var rules = $('#grm').val().trim().split('\n');
+		const grammar = new tinynlp.Grammar(rules);
 
-	var grammar = new tinynlp.Grammar(rules);
+		const rootProduction = 'S';
+		const chart = tinynlp.parse(tokenStream, grammar, rootProduction);
 
-	var rootProduction = 'S';
-	var chart = tinynlp.parse(tokenStream, grammar, rootProduction);
+		const state = chart.getFinishedRoot(rootProduction);
+		const resultTree = document.getElementById('result-tree');
+		resultTree.innerHTML = '';
+		if (state) {
+			const trees = state.traverse();
+			for (const tree in trees) {
+				// console.log(JSON.stringify(trees[i]));
+				resultTree.innerHTML +=
+					'<div class="tree" id="displayTree"><ul>' +
+					displayTree(trees[tree]) +
+					'</ul></div></br>';
+			}
+		} else resultTree.innerText = 'Entrada inválida';
+	});
+};
 
-	var state = chart.getFinishedRoot(rootProduction);
-	if (state) {
-		var trees = state.traverse();
-		$('#dv').empty();
-		for (var i in trees) {
-			console.log(JSON.stringify(trees[i]));
-			$('#dv').append(
-				'<div class="tree" id="displayTree"><ul>' +
-					displayTree(trees[i]) +
-					'</ul></div></br>',
-			);
-		}
-	}
-});
+main();
