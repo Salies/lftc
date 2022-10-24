@@ -1,7 +1,7 @@
-var tinynlp = (function () {
+const REGULAR_GRAMMAR = (() => {
 	function m(a) {
 		this.lhsToRhsList = {};
-		for (var c in a) {
+		for (const c in a) {
 			var b = a[c].split('->'),
 				d = b[0].trim(),
 				b = b[1].trim().split('|');
@@ -79,13 +79,13 @@ var tinynlp = (function () {
 		return null;
 	};
 	h.prototype.log = function (a) {
-		if (loggingOn) {
-			console.log('-------------------');
-			console.log('Column: ' + a);
-			console.log('-------------------');
-			for (var c in this.chart[a])
-				console.log(this.chart[a][c].toString());
-		}
+		// if (loggingOn) {
+		// console.log('-------------------');
+		// console.log('Column: ' + a);
+		// console.log('-------------------');
+		// for (var c in this.chart[a])
+		// console.log(this.chart[a][c].toString());
+		// }
 	};
 	g.prototype.complete = function () {
 		return this.dot >= this.rhs.length;

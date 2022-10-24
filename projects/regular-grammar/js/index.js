@@ -20,14 +20,24 @@ const main = () => {
 	const input = $('user-input');
 	input.addEventListener('input', function (e) {
 		const stream = e.target.value;
-		const tokenStream = stream.trim().split(' ');
+		const tokenStream = stream.trim().split(''); // tokenize the input
 
-		const rules = $('grammar-rules').value.trim().split('\n');
+		// parse the rules
+		const rules = $('grammar-rules')
+			.value.trim()
+			.replace(/\r|\t/g, '')
+			.split('\n');
 
-		const grammar = new tinynlp.Grammar(rules);
+		console.log(rules);
+
+		const grammar = new REGULAR_GRAMMAR.Grammar(rules);
 
 		const rootProduction = 'S';
-		const chart = tinynlp.parse(tokenStream, grammar, rootProduction);
+		const chart = REGULAR_GRAMMAR.parse(
+			tokenStream,
+			grammar,
+			rootProduction,
+		);
 
 		const state = chart.getFinishedRoot(rootProduction);
 		const resultTree = document.getElementById('result-tree');
