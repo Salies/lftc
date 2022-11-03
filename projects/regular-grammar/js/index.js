@@ -2,7 +2,7 @@ const $ = (id) => document.getElementById(id);
 
 const displayTree = (tree) => {
 	if (!tree.subtrees || tree.subtrees.length == 0)
-		return '<li><a href="#">' + tree.root + '</a></li>';
+		return '<li ><a href="#" class=\'red\'>' + tree.root + '</a></li>';
 
 	const builder = [];
 	builder.push('<li><a href="#">');
@@ -32,7 +32,7 @@ const main = () => {
 
 		const grammar = new REGULAR_GRAMMAR.Grammar(rules);
 
-		const rootProduction = 'S';
+		const rootProduction = 'P';
 		const chart = REGULAR_GRAMMAR.parse(
 			tokenStream,
 			grammar,
