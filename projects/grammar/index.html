@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="grammar.css">
+    <!--<script src="https://cdn.tailwindcss.com"></script>-->
     <title>LFTC - Gramática Regular</title>
 </head>
 <body>
     <div>
+        Gramática regular à direita
         <section>
-            <div class="lista">
-                <input type="text"> → <input type="text">
+            <button class="add-rule">Adicionar regra</button>
+            <div class="list">
+                <input type="text" value="S" readonly> →
+                <!-- on change input, call validateInput -->
+                <input type="text" class="rule" placeholder="λ" oninput="validateRule(this)">
             </div>
-            <button class="add-regra">Adicionar regra</button>
+            <input type="submit" value="Validar" oninput="validateInput(this)">
         </section>
     </div>
     <script src="../../components/main.js"></script>
