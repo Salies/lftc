@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="grammar.css">
-    <!--<script src="https://cdn.tailwindcss.com"></script>-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="grammar.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>LFTC - Gramática Regular</title>
-</head>
-<body>
-    <div>
-        Gramática regular à direita
-        <section>
-            <!-- prevent default behavior button -->
-            <button class="add-rule">Adicionar regra</button>
-            <ul class="list">
-                <input type="text" value="S" readonly> →
-                <!-- on change input, call validateInput -->
-                <input type="text" class="rule" placeholder="λ" oninput="validateRule(this)">
-            </ul>
-
-        </section>
+  </head>
+  <body>
+    <div class="container mx-auto text-center mt-5">
+      <h1 class="text-4xl font-bold">Gramática regular à direita</h1>
+      <section class="flex flex-col">
+        <div class="flex flex-col mx-auto">
+          <input type="text" class="input-grammar rounded-lg text-lg mt-3 bg-green-400 p-2 w-96" oninput="validateInput()" />
+          <button class="add-rule bg-yellow-300 rounded-lg text-lg p-1 w-48 mx-auto my-3">Adicionar regra</button>
+        </div>
+        <ul class="list">
+          <div class="max-w-lg p-0.5 mx-auto">
+            <input type="text" value="S" readonly class="w-16 bg-gray-200 rounded-lg text-center" />
+            <span>→</span>
+            <input type="text" placeholder="λ" oninput="validateRule(this)" class="w-fit bg-gray-200 rounded-lg text-center" />
+          </div>
+        </ul>
+      </section>
     </div>
     <script src="../../components/main.js"></script>
     <script src="js/grammar.js"></script>
-</body>
+  </body>
 </html>
