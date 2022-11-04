@@ -1,3 +1,8 @@
-input:invalid{
+.red {
     background-color: red;
 }
+
+.input {
+    margin-top: 10px;
+}
+

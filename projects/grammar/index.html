@@ -12,13 +12,14 @@
     <div>
         Gramática regular à direita
         <section>
+            <!-- prevent default behavior button -->
             <button class="add-rule">Adicionar regra</button>
-            <div class="list">
+            <ul class="list">
                 <input type="text" value="S" readonly> →
                 <!-- on change input, call validateInput -->
                 <input type="text" class="rule" placeholder="λ" oninput="validateRule(this)">
-            </div>
-            <input type="submit" value="Validar" oninput="validateInput(this)">
+            </ul>
+
         </section>
     </div>
     <script src="../../components/main.js"></script>
