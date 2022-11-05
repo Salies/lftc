@@ -5,9 +5,9 @@ $(".add-rule").addEventListener("click", (e) => {
   list.insertAdjacentHTML(
     "beforeend",
     `<div class="max-w-lg p-0.5 mx-auto">
-    <input type="text" value="S" class="w-16 bg-gray-200 rounded-lg text-center" />
+    <input type="text" value="S" class="w-16 bg-gray-200 rounded-lg text-center text-xl py-0.5" />
     <span>→</span>
-    <input type="text" placeholder="λ" oninput="validateRule(this)" class="rule w-fit bg-gray-200 rounded-lg text-center" />
+    <input type="text" placeholder="λ" oninput="validateRule(this)" class="rule w-28 bg-gray-200 rounded-lg text-center text-xl pt-0.5" />
   </div>`
   );
 });
@@ -36,8 +36,12 @@ const validateAllRules = () => {
 
 const validateInput = () => {
   const { value: grammar } = $(".input-grammar");
+  const treeDiv = $(".tree");
   const areRulesValid = validateAllRules();
   console.log("areRulesValid", areRulesValid);
   console.log("grammar", grammar);
   // Todo continue here.
+
+  const helloWorld = "Hello World";
+  treeDiv.innerHTML += `<div class="text-2xl">${helloWorld}</div>`;
 };
