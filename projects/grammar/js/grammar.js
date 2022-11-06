@@ -1,5 +1,6 @@
 const list = $(".list");
 const pattern = new RegExp("^[a-z]*[A-Z]?$");
+let tryAgain = true;
 
 $(".add-rule").addEventListener("click", (e) => {
   list.insertAdjacentHTML(
@@ -13,6 +14,8 @@ $(".add-rule").addEventListener("click", (e) => {
 });
 
 const validateRule = (el) => {
+  tryAgain = true;
+  console.log(tryAgain)
   const valid = pattern.test(el.value);
   if (valid) el.classList.remove("bg-red-300");
   else el.classList.add("bg-red-300");
@@ -55,6 +58,12 @@ const displayTree = (tree) => {
 	return builder.join('');
 };
 
+const getUserInput = () => {
+  let i = $(".user-input").value;
+  if(!tryAgain) i += "λ";
+  return i.split("");
+};
+
 const validateInput = () => {
   const areRulesValid = validateAllRules();
   if(!areRulesValid) return;
@@ -77,10 +86,13 @@ const validateInput = () => {
     parsedRules[indexLv] += " | " + rv;
   }
 
-  console.log(parsedRules)
-
-  // Código portado
-  const tokenStream = $(".user-input").value.split("");
+  /* 
+    O código abaixo foi portado dos exemplos da biblioteca.
+    É parcialmente de nossa autoria, mas por não ter originado de nós, deixamos os
+    devidos créditos para não incorrermos em plágio:
+    https://github.com/lagodiuk/earley-parser-js
+  */
+  const tokenStream = getUserInput();
 
   const grammar = new REGULAR_GRAMMAR.Grammar(parsedRules);
 
@@ -97,13 +109,21 @@ const validateInput = () => {
   if (state) {
     const trees = state.traverse();
     for (const tree in trees) {
-      // console.log(JSON.stringify(trees[i]));
       resultTree.innerHTML +=
         '<div class="tree" id="displayTree"><ul>' +
         displayTree(trees[tree]) +
         '</ul></div></br>';
     }
-  } else resultTree.innerText = 'Entrada inválida';
+    return;
+  }
+
+  if(parsedRules.join("").includes("λ") && tryAgain){
+    tryAgain = false;
+    validateInput();
+    return;
+  }
+
+  resultTree.innerText = 'Entrada inválida'
 };
 
 // TODO: validateInput no leftside
