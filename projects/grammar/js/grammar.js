@@ -128,3 +128,4 @@ const validateInput = () => {
 
 // TODO: validateInput no leftside
 // TODO: proibir lambda no user-input
+// TODO: remover? ou só F5 fodase mesmo?
