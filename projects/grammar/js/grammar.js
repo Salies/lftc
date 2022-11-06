@@ -87,7 +87,7 @@ const validateInput = () => {
   }
 
   /* 
-    O código abaixo foi portado dos exemplos da biblioteca.
+    O código abaixo foi adaptado dos exemplos da biblioteca.
     É parcialmente de nossa autoria, mas por não ter originado de nós, deixamos os
     devidos créditos para não incorrermos em plágio:
     https://github.com/lagodiuk/earley-parser-js
