@@ -127,3 +127,4 @@ const validateInput = () => {
 };
 
 // TODO: validateInput no leftside
+// TODO: proibir lambda no user-input
