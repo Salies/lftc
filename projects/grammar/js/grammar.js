@@ -4,10 +4,10 @@ const pattern = new RegExp("^[a-z]*[A-Z]?$");
 $(".add-rule").addEventListener("click", (e) => {
   list.insertAdjacentHTML(
     "beforeend",
-    `<div class="max-w-lg p-0.5 mx-auto">
-    <input type="text" value="S" class="w-16 bg-gray-200 rounded-lg text-center text-xl py-0.5" />
+    `<div class="max-w-lg p-0.5 mx-auto rule">
+    <input type="text" value="S" maxlength="1" oninput="upperRule(this)" class="w-16 bg-gray-200 rounded-lg text-center text-xl py-0.5" />
     <span>→</span>
-    <input type="text" placeholder="λ" oninput="validateRule(this)" class="rule w-28 bg-gray-200 rounded-lg text-center text-xl pt-0.5" />
+    <input type="text" placeholder="λ" oninput="validateRule(this)" class="right-rule w-28 bg-gray-200 rounded-lg text-center text-xl pt-0.5" />
   </div>`
   );
 });
@@ -22,7 +22,7 @@ const validateRule = (el) => {
 };
 
 const validateAllRules = () => {
-  const rules = document.querySelectorAll(".rule");
+  const rules = document.querySelectorAll(".right-rule");
   let allValid = true;
   for (let rule of rules) {
     const isValidRule = pattern.test(rule.value);
@@ -34,14 +34,76 @@ const validateAllRules = () => {
   return allValid;
 };
 
-const validateInput = () => {
-  const { value: grammar } = $(".input-grammar");
-  const treeDiv = $(".tree");
-  const areRulesValid = validateAllRules();
-  console.log("areRulesValid", areRulesValid);
-  console.log("grammar", grammar);
-  // Todo continue here.
-
-  const helloWorld = "Hello World";
-  treeDiv.innerHTML += `<div class="text-2xl">${helloWorld}</div>`;
+const upperRule = (el) => {
+  el.value = el.value.toUpperCase();
 };
+
+// Função da biblioteca
+const displayTree = (tree) => {
+	if (!tree.subtrees || tree.subtrees.length == 0)
+		return '<li ><a href="#" class=\'red\'>' + tree.root + '</a></li>';
+
+	const builder = [];
+	builder.push('<li><a href="#">');
+	builder.push(tree.root);
+	builder.push('</a>');
+	builder.push('<ul>');
+	for (const subtree in tree.subtrees)
+		builder.push(displayTree(tree.subtrees[subtree]));
+	builder.push('</ul>');
+	builder.push('</li>');
+	return builder.join('');
+};
+
+const validateInput = () => {
+  const areRulesValid = validateAllRules();
+  if(!areRulesValid) return;
+  // Transformando as regras inseridas em regras legíveis pela biblioteca
+  const rules = document.querySelectorAll(".rule");
+  let parsedRules = [], usedLeftSide = [];
+  for (let rule of rules) {
+    let children = rule.getElementsByTagName('input');
+    // rv -- a biblioteca separa os tokens por um espaço
+    let lv = children[0].value, rv = children[1].value.split("").join(" ");
+    // Se for vazio, põe λ
+    if(rv === "")
+      rv = "λ";
+    let indexLv = usedLeftSide.indexOf(lv);
+    if(indexLv === -1) {
+      usedLeftSide.push(lv);
+      parsedRules.push(lv + " -> " + rv);
+      continue;
+    }
+    parsedRules[indexLv] += " | " + rv;
+  }
+
+  console.log(parsedRules)
+
+  // Código portado
+  const tokenStream = $(".user-input").value.split("");
+
+  const grammar = new REGULAR_GRAMMAR.Grammar(parsedRules);
+
+  const rootProduction = 'S';
+  const chart = REGULAR_GRAMMAR.parse(
+    tokenStream,
+    grammar,
+    rootProduction,
+  );
+
+  const state = chart.getFinishedRoot(rootProduction);
+  const resultTree = document.getElementById('result-tree');
+  resultTree.innerHTML = '';
+  if (state) {
+    const trees = state.traverse();
+    for (const tree in trees) {
+      // console.log(JSON.stringify(trees[i]));
+      resultTree.innerHTML +=
+        '<div class="tree" id="displayTree"><ul>' +
+        displayTree(trees[tree]) +
+        '</ul></div></br>';
+    }
+  } else resultTree.innerText = 'Entrada inválida';
+};
+
+// TODO: validateInput no leftside

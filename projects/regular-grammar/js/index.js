@@ -28,11 +28,11 @@ const main = () => {
 			.replace(/\r|\t/g, '')
 			.split('\n');
 
-		console.log(rules);
+		console.log("REGRAS:", rules);
 
 		const grammar = new REGULAR_GRAMMAR.Grammar(rules);
 
-		const rootProduction = 'P';
+		const rootProduction = 'S';
 		const chart = REGULAR_GRAMMAR.parse(
 			tokenStream,
 			grammar,
