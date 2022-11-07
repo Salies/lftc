@@ -17,10 +17,7 @@ $(".add-rule").addEventListener("click", (e) => {
 const validateRule = (el) => {
   tryAgain = true;
   const valid = pattern.test(el.value);
-  /*if (valid) el.classList.remove("bg-red-300");
-  else el.classList.add("bg-red-300");
-
-  validateInput();*/
+  
   if(valid) {
     el.classList.remove("bg-red-300");
     validateInput();
