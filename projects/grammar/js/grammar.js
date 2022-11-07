@@ -75,7 +75,7 @@ const validateInput = () => {
   if(!areRulesValid) return;
   // Transformando as regras inseridas em regras legíveis pela biblioteca
   const rules = document.querySelectorAll(".rule");
-  let parsedRules = [], usedLeftSide = [];
+  let parsedRules = ['🦀 -> S'], usedLeftSide = ['🦀'];
   for (let rule of rules) {
     let children = rule.getElementsByTagName('input');
     // rv -- a biblioteca separa os tokens por um espaço
@@ -102,7 +102,7 @@ const validateInput = () => {
 
   const grammar = new REGULAR_GRAMMAR.Grammar(parsedRules);
 
-  const rootProduction = 'S';
+  const rootProduction = '🦀';
   const chart = REGULAR_GRAMMAR.parse(
     tokenStream,
     grammar,
@@ -112,7 +112,7 @@ const validateInput = () => {
   const state = chart.getFinishedRoot(rootProduction);
   resultTree.innerHTML = '';
   if (state) {
-    const trees = state.traverse();
+    const trees = state.traverse()['0'].subtrees;
     for (const tree in trees) {
       resultTree.innerHTML +=
         '<div class="tree" id="displayTree"><ul>' +
