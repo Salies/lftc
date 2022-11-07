@@ -94,13 +94,9 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 .tree li:last-child::before {
 	border-right: 1px solid #ccc;
 	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
 }
 .tree li:first-child::after {
 	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
 }
 
 /*Time to add downward connectors from parents*/
@@ -116,20 +112,19 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 
 .tree li a {
 	border: 1px solid #ccc;
-	padding: 5px 10px;
+	/*padding: 5px 10px;*/
+	width: 30px;
+    height: 30px;
+    line-height: 30px;
 	text-decoration: none;
 	color: #666;
 	font-family: arial, verdana, tahoma;
 	font-size: 11px;
 	display: inline-block;
 
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	border-radius: 50%;
 
 	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
 }
 
 /*Time for some hover effects*/
@@ -148,9 +143,8 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 	border-color: #94a0b4;
 }
 
-.red {
-	background: red;
-	color: white !important;
+.bg-green-500 {
+	color: white!important;
 }
 
 /*Thats all. I hope you enjoyed it.

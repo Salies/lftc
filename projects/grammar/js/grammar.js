@@ -39,12 +39,13 @@ const validateAllRules = () => {
 
 const upperRule = (el) => {
   el.value = el.value.toUpperCase();
+  validateRule(el.parentNode.childNodes[5]); // validateInput no leftside
 };
 
 // Função da biblioteca
 const displayTree = (tree) => {
 	if (!tree.subtrees || tree.subtrees.length == 0)
-		return '<li ><a href="#" class=\'red\'>' + tree.root + '</a></li>';
+		return '<li ><a href="#" class=\'bg-green-500\'>' + tree.root + '</a></li>';
 
 	const builder = [];
 	builder.push('<li><a href="#">');
@@ -126,6 +127,7 @@ const validateInput = () => {
   resultTree.innerText = 'Entrada inválida'
 };
 
-// TODO: validateInput no leftside
+validateInput(); // para a primeira execução
+
 // TODO: proibir lambda no user-input
 // TODO: remover? ou só F5 fodase mesmo?
