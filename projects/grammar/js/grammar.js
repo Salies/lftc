@@ -1,4 +1,5 @@
 const list = $(".list");
+const resultTree = document.getElementById('result-tree');
 const pattern = new RegExp("^[a-z]*[A-Z]?$");
 let tryAgain = true;
 
@@ -15,12 +16,19 @@ $(".add-rule").addEventListener("click", (e) => {
 
 const validateRule = (el) => {
   tryAgain = true;
-  console.log(tryAgain)
   const valid = pattern.test(el.value);
-  if (valid) el.classList.remove("bg-red-300");
+  /*if (valid) el.classList.remove("bg-red-300");
   else el.classList.add("bg-red-300");
 
-  validateInput();
+  validateInput();*/
+  if(valid) {
+    el.classList.remove("bg-red-300");
+    validateInput();
+  }
+  else {
+    el.classList.add("bg-red-300");
+    resultTree.innerText = 'Entrada inválida';
+  }
   return valid;
 };
 
@@ -105,7 +113,6 @@ const validateInput = () => {
   );
 
   const state = chart.getFinishedRoot(rootProduction);
-  const resultTree = document.getElementById('result-tree');
   resultTree.innerHTML = '';
   if (state) {
     const trees = state.traverse();
