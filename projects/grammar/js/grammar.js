@@ -129,5 +129,7 @@ const validateInput = () => {
 
 validateInput(); // para a primeira execução
 
-// TODO: proibir lambda no user-input
-// TODO: remover? ou só F5 fodase mesmo?
+/*
+TODO (mas f****): proibir lambda
+TODO (mas f****): remover (só da F5, mano)
+*/
