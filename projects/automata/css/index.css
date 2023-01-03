@@ -164,3 +164,7 @@ input[type="text"] {
 .optFinal > input {
     margin-right: 5px;
 }
+
+.current {
+    color: blue;
+}
