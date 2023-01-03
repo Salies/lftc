@@ -82,7 +82,7 @@ class CanvasController {
         // Nome do estado
         const nameDiv = document.createElement('div');
         const nameLabel = document.createElement('label');
-        nameLabel.innerText = 'Nome do estado:';
+        nameLabel.innerText = 'Nome:';
         const nameInput = document.createElement('input');
         nameInput.id = 'stateLabelInput';
         nameInput.type = 'text';
@@ -105,7 +105,7 @@ class CanvasController {
         buttonDiv.appendChild(cancelButton);
 
         // Montando a interface
-        this.addStateMenu.classList.add('menuItem');
+        this.addStateMenu.classList.add('addStateMenu');
         this.addStateMenu.appendChild(nameDiv);
         this.addStateMenu.appendChild(buttonDiv);
 
@@ -152,7 +152,7 @@ class CanvasController {
         buttonDiv.appendChild(cancelButton);
 
         // Montando a interface
-        this.addTransitionMenu.classList.add('menuItem');
+        this.addTransitionMenu.classList.add('addTransitionMenu');
         this.addTransitionMenu.appendChild(toStateDiv);
         this.addTransitionMenu.appendChild(symbolDiv);
         this.addTransitionMenu.appendChild(buttonDiv);
