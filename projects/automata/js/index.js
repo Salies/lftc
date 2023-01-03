@@ -1,5 +1,4 @@
 
-const $ = document.querySelector.bind(document);
 // Cria o autômato base para uso
 const automata = new Automata();
 
@@ -19,9 +18,17 @@ const setInputBtn = $('.simStringButton'),
     resultDiv = $('.simResult'),
     stringInput = $('.simStringInput');
 
+const setAsPassed = () => {
+    resultDiv.classList.add('passed');
+}
+    
+const setAsRejected = () => {
+    resultDiv.classList.add('rejected');
+}
+
 const checkStart = () => {
     if (automata.startState !== null) return true;
-    alert('É necessário definir um estado inicial!');
+    setWarning('É necessário definir um estado inicial!');
     return false;
 }
 
@@ -30,6 +37,8 @@ const setString = () => {
     automata.reset(stringInput.value);
     controller.redraw();
     resultDiv.innerHTML = '';
+    resultDiv.classList.remove('passed');
+    resultDiv.classList.remove('rejected');
     [...(stringInput.value)].forEach(char => {
         resultDiv.innerHTML += `<span>${char}</span>`
     });
@@ -60,12 +69,24 @@ const step = () => {
     }
 
     if (pass) {
-        alert('Passou');
+        setAsPassed();
         return;
     }
 
-    alert('Não passou');
+    setAsRejected();
+}
+
+const reset = () => {
+    if(!checkStart()) return;
+
+    automata.reset();
+    controller.redraw();
+
+    resultDiv.classList.remove('passed');
+    resultDiv.classList.remove('rejected');
+    resultDiv.innerHTML = '';
 }
 
 setInputBtn.addEventListener('click', setString);
 stepBtn.addEventListener('click', step);
+resetBtn.addEventListener('click', reset);

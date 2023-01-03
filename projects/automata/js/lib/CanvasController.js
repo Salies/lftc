@@ -207,13 +207,13 @@ class CanvasController {
         const previousLabelValue = label.value;
 
         if (previousLabelValue == "") {
-            alert("Error: The state label cannot be blank.")
+            setWarning("O estado precisa ter um nome!")
             return;
         }
 
         // Verifica se já existe um estado com o mesmo nome
         if (this.fa.findState(previousLabelValue) != null) {
-            alert("Error: A state already exists with label " + previousLabelValue + ".");
+            setWarning(`Já existe um estado com o nome ${previousLabelValue}!`);
             return;
         }
 
@@ -270,12 +270,12 @@ class CanvasController {
         let previousSymbols = symbols.value;
 
         if (previousToStateName == "") {
-            alert("Error: The state label cannot be blank.");
+            setWarning("É necessário um estado de destino (pode ser ele mesmo)!");
             return;
         }
 
         if (toState == null) {
-            alert("Error: There is no state with label " + previousToStateName + ".");
+            setWarning(`Não há estado cujo nome é ${previousToStateName}!`);
             return;
         }
 

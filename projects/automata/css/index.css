@@ -165,6 +165,6 @@ input[type="text"] {
     margin-right: 5px;
 }
 
-.current {
-    color: blue;
+.passed {
+    background-color: rgb(15, 218, 106)!important;
 }
