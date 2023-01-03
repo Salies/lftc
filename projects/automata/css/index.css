@@ -30,7 +30,7 @@ button {
 }
 
 /* Estilo legal pros inputs */
-input {
+input[type="text"] {
     border: 0;
     border-radius: 4px;
     padding: 5px 10px;
@@ -152,4 +152,15 @@ input {
 
 .buttonDiv > button:first-of-type {
     margin-right: 4px;
+}
+
+.optFinal {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-flow: row-reverse;
+}
+
+.optFinal > input {
+    margin-right: 5px;
 }

@@ -32,6 +32,7 @@ class CanvasController {
         setFinalCheckbox.type = 'checkbox';
         setFinalCheckbox.id = 'setFinalCheckbox';
         menuOptions['Final'].appendChild(setFinalCheckbox);
+        menuOptions['Final'].classList.add('optFinal');
 
         // Construindo o menu para clique em um lugar vazio da tela.
         this.defaultMenu = document.createElement('div');
@@ -41,8 +42,8 @@ class CanvasController {
         this.stateMenu = document.createElement('div');
         this.stateMenu.appendChild(menuOptions['Remover estado']);
         this.stateMenu.appendChild(menuOptions['Adicionar transição']);
-        this.stateMenu.appendChild(menuOptions['Final']);
         this.stateMenu.appendChild(menuOptions['Definir como inicial']);
+        this.stateMenu.appendChild(menuOptions['Final']);
 
         // Construindo o menu para clique em uma transição.
         this.transitionMenu = document.createElement('div');
