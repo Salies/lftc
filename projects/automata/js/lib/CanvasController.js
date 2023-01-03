@@ -103,6 +103,7 @@ class CanvasController {
         const buttonDiv = document.createElement('div');
         buttonDiv.appendChild(createButton);
         buttonDiv.appendChild(cancelButton);
+        buttonDiv.classList.add('buttonDiv');
 
         // Montando a interface
         this.addStateMenu.classList.add('addStateMenu');
@@ -136,6 +137,7 @@ class CanvasController {
 
         // Div dos botões
         const buttonDiv = document.createElement('div');
+        buttonDiv.classList.add('buttonDiv');
 
         // Botão de criação
         const createButton = document.createElement('button');

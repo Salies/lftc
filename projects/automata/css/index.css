@@ -21,7 +21,7 @@ hr {
 
 /* Estilo legal pros botões */
 button {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(22 78 99);
     color: rgb(255, 255, 255);
     border: 0;
     border-radius: 4px;
@@ -99,26 +99,25 @@ input {
 .simResult {
     height: 24px;
     border-radius: 4px;
-    background-color: rgb(160, 160, 160);
+    background-color: rgb(207 250 254);
     text-align: center;
 }
 
 /* Interface interna de desenho */
 .menu-wrapper {
     position: absolute;
-    background: blanchedalmond;
+    background: rgb(103 232 249);
+    color: #000;
     padding: 4px;
     border-radius: 4px;
     max-width: 160px;
 }
 
-.menu-wrapper > div > div {
-    background-color: blue;
-    padding: 4px;
+.menuItem, .addStateMenu, .addTransitionMenu {
+    padding: 6px;
 }
 
 .menu-wrapper > div > div:first-of-type {
-    background-color: red;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -129,11 +128,28 @@ input {
 }
 
 .menuItem:hover {
-    background-color: purple!important;
+    background-color: rgb(34 211 238)!important;
     cursor: default;
 }
 
 .addStateMenu input, .addTransitionMenu input {
     max-width: 40px;
     margin-left: 5px;
+}
+
+.addStateMenu > div:first-of-type, .addTransitionMenu > div {
+    margin-bottom:5px;
+}
+
+.addTransitionMenu > div:last-of-type {
+    margin-bottom: 0;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonDiv > button:first-of-type {
+    margin-right: 4px;
 }
