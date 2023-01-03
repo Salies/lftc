@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LFTC - Simulador de autômatos finitos</title>
+    <link rel="stylesheet" href="css/minireset.min.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div id="obj1" style="width: 100px; height: 100px; background-color: red;"></div>
-    <div id="obj2" style="width: 100px; height: 100px; background-color: green;
-    position:absolute; top:500px; right:500px;"></div>
-    <script src="node_modules/jsplumb/dist/js/jsplumb.min.js"></script>
-    <script>
-        jsPlumb.ready(function() {
-            var firstInstance = jsPlumb.getInstance();
-            firstInstance.importDefaults({
-                Connector : [ "Bezier", { curviness: 150 } ],
-                Anchors : [ "TopCenter", "BottomCenter" ]
-            });
-            firstInstance.connect({
-                source: "obj1",
-                target: "obj2"
-            });
-            firstInstance.draggable("obj1");
-            firstInstance.draggable("obj2");
-        });
-    </script>
+    <h1>Simulador de autômatos finitos</h1>
+
+    <div id="wrapper">
+        <div class="automata"></div>
+        <div class="operations">
+            <div>
+                <h3>Simulação passo-a-passo</h3>
+                <input type="text" class="simStringInput takeAll" placeholder="Insira uma cadeia">
+                <button class="simStringButton takeAll">Simular cadeia</button>
+                <hr>
+                <div class="simResult takeAll"></div>
+                <div class="simButtons takeAll">
+                    <button class="simStep">Passo</button>
+                    <button class="simReset">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

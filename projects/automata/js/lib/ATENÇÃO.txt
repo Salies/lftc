@@ -1,0 +1,10 @@
+O código contido nesta pasta (lib) NÃO foi inteiramente produzido pelos alunos.
+Trata-se de uma adaptação da biblioteca disponível em
+https://github.com/aminrf95/Finite-Automata-Editor.
+Por mais que boa parte do código tenha sido reescrito pelos alunos para adequar-se ao projeto,
+não se trata de uma biblioteca original.
+
+A biblioteca provê uma classe para representar o autômato, assim como uma outra classe que recebe um canvas e o gerencia, possibilitando o desenho do autômato. Além disso, ela traz um parser básico
+de strings.
+
+Demais funcionalidades, como as conversões, foram acrescentadas pelos alunos.
