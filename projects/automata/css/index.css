@@ -19,6 +19,12 @@ hr {
     margin: 10px 0;
 }
 
+/* Canvas */
+/*canvas {
+    width: 100%;
+    min-height: 596px;
+}*/
+
 /* Estilo legal pros botões */
 button {
     background-color: rgb(0, 0, 0);
@@ -50,6 +56,12 @@ input {
     min-height:600px;
     background-color: blueviolet;
     margin-right:10px;
+    border-radius: 10px;
+}
+
+.automata > canvas {
+    margin-top: 10px;
+    margin-left: 3px;
 }
 
 .operations {
@@ -85,7 +97,7 @@ input {
     width: calc(50% - 2px);
 }
 
-.simStep {
+.simReset {
     margin-right: 4px;
 }
 
@@ -93,4 +105,5 @@ input {
     height: 24px;
     border-radius: 4px;
     background-color: rgb(160, 160, 160);
+    text-align: center;
 }

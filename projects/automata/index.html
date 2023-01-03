@@ -12,7 +12,9 @@
     <h1>Simulador de autômatos finitos</h1>
 
     <div id="wrapper">
-        <div class="automata"></div>
+        <div class="automata" id="canvasDiv">
+            <!--<canvas id="canvas"></canvas>-->
+        </div>
         <div class="operations">
             <div>
                 <h3>Simulação passo-a-passo</h3>
@@ -21,11 +23,18 @@
                 <hr>
                 <div class="simResult takeAll"></div>
                 <div class="simButtons takeAll">
-                    <button class="simStep">Passo</button>
                     <button class="simReset">Reiniciar</button>
+                    <button class="simStep">Passo</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Chamando os scripts. Primeiro os da lib, depois os da interface. -->
+    <script src="js/lib/Point.js"></script>
+    <script src="js/lib/State.js"></script>
+    <script src="js/lib/Transition.js"></script>
+    <script src="js/lib/Automata.js"></script>
+    <script src="js/lib/CanvasController.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

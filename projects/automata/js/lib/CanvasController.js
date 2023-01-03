@@ -79,26 +79,6 @@ class CanvasController {
 
     // Cria a interface de criação de estados.
     createStateCreationUI() {
-        // Marcação de estado final
-        const finalDiv = document.createElement('div');
-        const finalLabel = document.createElement('label');
-        finalLabel.innerText = 'Final';
-        const finalInput = document.createElement('input');
-        finalInput.id = 'stateAcceptInput';
-        finalInput.type = 'checkbox';
-        finalDiv.appendChild(finalInput);
-        finalDiv.appendChild(finalLabel);
-
-        // Marcação de estado inicial
-        const initialDiv = document.createElement('div');
-        const initialLabel = document.createElement('label');
-        initialLabel.innerText = 'Inicial';
-        const initialInput = document.createElement('input');
-        initialInput.id = 'stateStartInput';
-        initialInput.type = 'checkbox';
-        initialDiv.appendChild(initialInput);
-        initialDiv.appendChild(initialLabel);
-
         // Nome do estado
         const nameDiv = document.createElement('div');
         const nameLabel = document.createElement('label');
@@ -127,8 +107,6 @@ class CanvasController {
         // Montando a interface
         this.addStateMenu.classList.add('menuItem');
         this.addStateMenu.appendChild(nameDiv);
-        this.addStateMenu.appendChild(finalDiv);
-        this.addStateMenu.appendChild(initialDiv);
         this.addStateMenu.appendChild(buttonDiv);
 
         return { stateCreateButton: createButton, stateCancelButton: cancelButton }
