@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
 * {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Inter', sans-serif;
 }
 
 /* Coisas padrão */
 h1 {
     font-size: 2rem;
-    font-weight: 600;
+    text-align: center;
+    padding: 20px 0;
+    font-weight: 300;
 }
 
 h3 {
@@ -17,6 +21,17 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px 0;
+}
+
+.return {
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+}
+
+.return > a {
+    color: #000;
+    text-decoration: none;
 }
 
 /* Estilo legal pros botões */
