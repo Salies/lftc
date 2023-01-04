@@ -127,6 +127,10 @@ input[type="text"] {
     max-width: 160px;
 }
 
+.menuItem {
+    font-size: 0.96rem;
+}
+
 .menuItem, .addStateMenu, .addTransitionMenu {
     padding: 6px;
 }

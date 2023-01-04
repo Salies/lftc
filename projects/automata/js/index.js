@@ -16,7 +16,7 @@ const setInputBtn = $('.simStringButton'),
     stepBtn = $('.simStep'),
     resetBtn = $('.simReset'),
     resultDiv = $('.simResult'),
-    stringInput = $('.simStringInput');
+    stepUserString = $('.simStringInput');
 
 const setAsPassed = () => {
     resultDiv.classList.add('passed');
@@ -34,15 +34,15 @@ const checkStart = () => {
 
 const setString = () => {
     if (!checkStart()) return;
-    automata.reset(stringInput.value);
+    automata.reset(stepUserString.value);
     controller.redraw();
     resultDiv.innerHTML = '';
     resultDiv.classList.remove('passed');
     resultDiv.classList.remove('rejected');
-    [...(stringInput.value)].forEach(char => {
+    [...(stepUserString.value)].forEach(char => {
         resultDiv.innerHTML += `<span>${char}</span>`
     });
-    stringInput.value = '';
+    stepUserString.value = '';
 }
 
 const step = () => {
