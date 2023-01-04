@@ -166,5 +166,9 @@ input[type="text"] {
 }
 
 .passed {
-    background-color: rgb(15, 218, 106)!important;
+    background-color: #86efac!important;
+}
+
+.rejected {
+    background-color: #fca5a5!important;
 }

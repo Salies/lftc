@@ -8,7 +8,7 @@ class CanvasController {
         this.fa = fa;
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
-        this.ctx.font = "20px serif";
+        this.ctx.font = "16px sans-serif";
 
         this.mousePressed = false;
         this.ctrlPressed = false;

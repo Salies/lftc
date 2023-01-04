@@ -84,6 +84,7 @@ const reset = () => {
 
     resultDiv.classList.remove('passed');
     resultDiv.classList.remove('rejected');
+    // T0DO FIX ISSO TÁ ERRADO TRANSFORAMR EM CLASSE
     resultDiv.innerHTML = '';
 }
 
