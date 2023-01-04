@@ -2,7 +2,6 @@
 // Cria o autômato base para uso
 const automata = new Automata();
 
-//const canvas = document.getElementById('canvas');
 const canvas = document.createElement("canvas");
 canvas.width = 659;
 canvas.height = 580;
