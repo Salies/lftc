@@ -49,9 +49,9 @@ input[type="text"] {
     position: relative;
     width: calc(75% - 10px);
     min-height:600px;
-    background-color: blueviolet;
     margin-right:10px;
     border-radius: 10px;
+    border: 2px solid #1f2937;
 }
 
 .automata > canvas {
@@ -61,14 +61,13 @@ input[type="text"] {
 
 .operations {
     width: 25%;
-    background-color: coral;
 }
 
 .operations > div {
     margin-bottom: 10px;
-    background-color: aquamarine;
     padding:10px;
     border-radius: 10px;
+    background-color: #e2e8f0;
 }
 
 .operations > div:last-of-type {
@@ -99,7 +98,7 @@ input[type="text"] {
 .simResult {
     height: 24px;
     border-radius: 4px;
-    background-color: rgb(207 250 254);
+    background-color: #f3f4f6;
     text-align: center;
 }
 
