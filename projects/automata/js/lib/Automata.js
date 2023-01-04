@@ -8,7 +8,7 @@ class Automata {
     inputIndex = 0;
 
     addState(x, y,label) {
-        const state = new State(x, y, 15, false, label);
+        const state = new State(x, y, 20, false, label);
         this.states.push(state);
     }
 

@@ -26,7 +26,9 @@ class State {
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         ctx.stroke();
 
-        ctx.fillText(this.label, this.x - 7, this.y + 6);
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(this.label, this.x, this.y);
 
         if(this.start) this.drawStart(ctx);
 
