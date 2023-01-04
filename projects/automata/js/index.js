@@ -47,12 +47,12 @@ const setString = () => {
 
 const step = () => {
     if(automata.inputIndex > 0)
-        resultDiv.childNodes[automata.inputIndex - 1].style.color = "black";
+        resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
     
     if (automata.inputIndex < automata.input.length) {
         automata.step();
         controller.redraw();
-        resultDiv.childNodes[automata.inputIndex].style.color = 'blue';
+        resultDiv.childNodes[automata.inputIndex].classList.add('current');
         automata.inputIndex++;
         return;
     }
@@ -84,8 +84,9 @@ const reset = () => {
 
     resultDiv.classList.remove('passed');
     resultDiv.classList.remove('rejected');
-    // T0DO FIX ISSO TÁ ERRADO TRANSFORAMR EM CLASSE
-    resultDiv.innerHTML = '';
+    // Remove a classe current do span atual, se houver
+    if (automata.inputIndex > 0)
+        resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
 }
 
 setInputBtn.addEventListener('click', setString);

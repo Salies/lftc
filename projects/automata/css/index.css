@@ -172,3 +172,8 @@ input[type="text"] {
 .rejected {
     background-color: #fca5a5!important;
 }
+
+.current {
+    color: #db2777!important;
+    font-weight: 600;
+}
