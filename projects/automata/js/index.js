@@ -60,13 +60,7 @@ const step = () => {
     // Está no último caractere da string
     // Lembrando que se algum dos caracteres não tiver transição,
     // o autômato vai para um estado de erro, e não passa no final.
-    let pass = false;
-    for(let state of automata.states) {
-        if (state.current && state.accept) {
-            pass = true;
-            break;
-        }
-    }
+    const pass = automata.states.some(state => state.current && state.accept);
 
     if (pass) {
         setAsPassed();
