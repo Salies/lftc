@@ -2,6 +2,7 @@
 // Cria o autômato base para uso
 const automata = new Automata();
 
+// Criando um canvas e colocando ele dentro da div
 const canvas = document.createElement("canvas");
 canvas.width = 659;
 canvas.height = 580;
@@ -17,20 +18,25 @@ const setInputBtn = $('.simStringButton'),
     resultDiv = $('.simResult'),
     stepUserString = $('.simStringInput');
 
+// Colore a div da string de verdde
 const setAsPassed = () => {
     resultDiv.classList.add('passed');
 }
     
+// Colore a div da string de vermelho
 const setAsRejected = () => {
     resultDiv.classList.add('rejected');
 }
 
+// Verifica se há um estado inicial no autômato.
+// Se tiver, então o percurso pode começar.
 const checkStart = () => {
     if (automata.startState !== null) return true;
     setWarning('É necessário definir um estado inicial!');
     return false;
 }
 
+// Define a string de entrada para percurso no autômato.
 const setString = () => {
     if (!checkStart()) return;
     automata.reset(stepUserString.value);
@@ -44,10 +50,13 @@ const setString = () => {
     stepUserString.value = '';
 }
 
+// Faz um passo na validação da string no autômato.
 const step = () => {
+    // Retira o destaque do anterior
     if(automata.inputIndex > 0)
         resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
     
+    // Faz o passo no próximo
     if (automata.inputIndex < automata.input.length) {
         automata.step();
         controller.redraw();
@@ -56,7 +65,7 @@ const step = () => {
         return;
     }
 
-    // Está no último caractere da string
+    // Está no último caractere da string. Verificar se a string passou.
     // Lembrando que se algum dos caracteres não tiver transição,
     // o autômato vai para um estado de erro, e não passa no final.
     const pass = automata.states.some(state => state.current && state.accept);
@@ -69,6 +78,7 @@ const step = () => {
     setAsRejected();
 }
 
+// Reinicia os passos com a string atual.
 const reset = () => {
     if(!checkStart()) return;
 
@@ -82,6 +92,7 @@ const reset = () => {
         resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
 }
 
+// Sincroniza as funções com os botões da interface.
 setInputBtn.addEventListener('click', setString);
 stepBtn.addEventListener('click', step);
 resetBtn.addEventListener('click', reset);
