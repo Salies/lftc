@@ -3,8 +3,8 @@ const regexOutput = document.querySelector('.regexResult')
 const grammarArea = document.querySelector('#grammar')
 const entradaDiv = document.querySelector('.entradaDiv')
 const treeDiv = document.querySelector('.tree')
-const close_g_to_a = document.querySelector('.close-g-to-a')
-const close_a_to_g = document.querySelector('.close-a-to-g')
+const toAutomataButton = document.querySelector('.to-automata')
+const addRuleButton = document.querySelector('.add-rule')
 
 function checkRegex() {
     let regexText = regexInput.value;
@@ -183,21 +183,26 @@ function clearRules() {
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
-document.querySelector('.to-automata').addEventListener('click', grammarToAutomata);
+toAutomataButton.addEventListener('click', grammarToAutomata);
 
-close_g_to_a.addEventListener('click', () => {
-    close_g_to_a.style.display = 'none';
+document.querySelector('.close-button').addEventListener('click', () => {
     grammarArea.style.display = 'none';
     clearRules();
 });
 
 document.querySelector('.grammarToAutomataButton').addEventListener('click', () => {
+    entradaDiv.classList.add('displayNone');
+    treeDiv.classList.add('displayNone');
     grammarArea.style.display = 'block';
-    close_g_to_a.style.display = 'block';
+    toAutomataButton.style.display = 'block';
+    addRuleButton.style.display = 'block';
 });
 
 document.querySelector('.automataToGrammarButton').addEventListener('click', () => {
     // Mostra entrada de gramática e árvore
-    entradaDiv.style.display = 'block';
-    treeDiv.style.display = 'block';
+    entradaDiv.classList.remove('displayNone');
+    treeDiv.classList.remove('displayNone');
+    grammarArea.style.display = 'block';
+    toAutomataButton.style.display = 'none';
+    addRuleButton.style.display = 'none';
 });

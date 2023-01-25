@@ -255,8 +255,12 @@ input[type="text"] {
     margin-bottom:10px;
 }
 
-.entradaDiv, .tree {
+.displayNone {
     display: none;
+}
+
+.tree {
+    padding-bottom: 30px;
 }
 
 .add-rule {
@@ -268,10 +272,6 @@ input[type="text"] {
     top: 15px;
     right: 15px;
     cursor: pointer;
-}
-
-.close-g-to-a, .close-a-to-g {
-    display:none;
 }
 
 .specialButton {
