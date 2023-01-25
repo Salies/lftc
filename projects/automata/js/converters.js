@@ -45,7 +45,7 @@ function regexToAutomata() {
     });
     
     // Adiciona as transições
-    let fromState, toState, symbol;
+    let fromState, toState;
     converted.transitions.forEach(transition => {
         transition.toStates.forEach(ts => {
             fromState = automata.findState(`q${transition.fromState}`);
