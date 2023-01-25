@@ -106,6 +106,7 @@ function grammarToAutomata() {
         if(rvUp && !states.includes(rvUp)) states.push(rvUp)
         // Agora filtrando os lowercase para pegar transições
         rvLo = rv.match(/[a-z]/g);
+        // Se X -> aY então δ = δ ∪ {(X,a) -> Y};
         if(rvLo && rvUp) {
             rvLo.forEach(symbol => {
                 transitions.push({fromState: lv, toState: rvUp, symbol: symbol});
@@ -113,6 +114,7 @@ function grammarToAutomata() {
             return;
         }
 
+        // Se X -> a então δ = δ ∪ {(X, a) -> Z};
         if(rvLo && !rvUp) {
             rvLo.forEach(symbol => {
                 transitions.push({fromState: lv, toState: 'Z', symbol: symbol});
@@ -120,11 +122,13 @@ function grammarToAutomata() {
             return;
         }
 
+        // Se X -> Y então δ = δ ∪ {(X, ε) -> Y};
         if(!rvLo && rvUp) {
             transitions.push({fromState: lv, toState: rvUp, symbol: 'λ'});
             return;
         }
 
+        // Se X -> ε então δ = δ ∪ {(X, ε) -> Z};
         transitions.push({fromState: lv, toState: 'Z', symbol: 'λ'});
     });
     

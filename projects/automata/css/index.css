@@ -199,7 +199,7 @@ input[type="text"] {
 /* Conversões */
 .regexResult {
     pointer-events:none;
-    background-color: rgb(244 244 245);
+    background-color: #f3f4f6;
 }
 
 /* Área de gramática */
@@ -226,7 +226,6 @@ input[type="text"] {
     width:300px;
     position: relative;
     border-radius: 10px;
-    /* align center */
     margin: 0 auto;
     top: 50%;
     transform: translateY(-50%);
