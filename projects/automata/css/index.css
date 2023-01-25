@@ -235,6 +235,16 @@ input[type="text"] {
     transform: translateY(-50%);
 }
 
+#displayTree {
+    max-height:200px;
+    overflow: auto;
+}
+
+.grammar-collection {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 #grammar button {
     background-color: rgb(99 102 241)
 }

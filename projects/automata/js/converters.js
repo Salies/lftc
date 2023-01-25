@@ -31,7 +31,6 @@ function regexToAutomata() {
     if (!regex) return;
 
     const converted = noam.re.tree.toAutomaton(regex);
-    console.log(converted)
  
     // Construindo o autômato na interface
     // Reseta o autômato
@@ -171,6 +170,64 @@ function grammarToAutomata() {
     clearRules();
 }
 
+function printGrammar(leftSide, rightSide) {
+}
+
+function transitionToRule(t) {
+    if(t.symbols == 'λ') return [t.fromState.label, t.toState.label];
+    return [t.fromState.label, t.symbols + t.toState.label];
+}
+
+function automataToGrammar() {
+    if(automata.states.length > 26) {
+        swal("Erro", "Autômato com muitos estados. Por favor, simplifique-o.", "error");
+        return;
+    }
+    // Faz uma cópia do autômato
+    let automataCopy = Object.assign(Object.create(Object.getPrototypeOf(automata)), automata);
+    // Para cada estado, seta uma letra maiúscula diferente do alfabeto
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    automataCopy.states.forEach((state, index) => {
+        state.label = alphabet[index];
+    });
+    // Pega o estado que está com a letra S e troca a label dele com o estado inicial
+    console.log(automataCopy);
+    const sState = automataCopy.states.find(state => state.label == 'S');
+    if (sState) sState.label = automataCopy.startState.label;
+    automataCopy.startState.label = 'S';
+    // Agora, vamos à construção da gramática
+    let rules = [];
+    // Adiciona as regras de transição
+    automataCopy.transitions.forEach(t => {
+        rules.push(transitionToRule(t));
+    });
+    // Verifica se os estados são finais
+    automataCopy.states.forEach(state => {
+        if(state.accept) rules.push([state.label, 'λ']);
+    });
+    
+    // Coloca as regras com S na esquerda no início
+    rules.sort((a, b) => {
+        if(a[0] == 'S') return -1;
+        if(b[0] == 'S') return 1;
+        return 0;
+    });
+
+    // Adiciona as regras na tela
+    clearRules();
+    let rulesDivs;
+    console.log(rulesDivs);
+    rules.forEach((rule, index) => {
+        if(index !== 0) addRule();
+        rulesDivs = document.querySelectorAll('.rule');
+        rulesDivs[index].getElementsByTagName('input')[0].value = rule[0];
+        rulesDivs[index].getElementsByTagName('input')[1].value = rule[1];
+        if (rule[1] == 'λ') rulesDivs[index].getElementsByTagName('input')[1].value = '';
+    });
+
+    validateInput();
+}
+
 function clearRules() {
     // Exclui todos as rules, deixando apenas uma
     const rules = document.querySelectorAll('.rule');
@@ -203,12 +260,21 @@ document.querySelector('.grammarToAutomataButton').addEventListener('click', () 
 });
 
 document.querySelector('.automataToGrammarButton').addEventListener('click', () => {
+    // Executa a função
+    try {
+        automataToGrammar();
+    } catch (error) {
+        swal("Erro", "Autômato inválido. Por favor, verifique-o.", "error");
+        return;
+    }
+    // Mostra a interface depois de tudo pronto
     // Mostra entrada de gramática e árvore
     entradaDiv.classList.remove('displayNone');
     treeDiv.classList.remove('displayNone');
     grammarArea.style.display = 'block';
     toAutomataButton.style.display = 'none';
     addRuleButton.style.display = 'none';
+    // Congela pós escrita
     const rules = document.querySelectorAll('.rule');
     let inputs;
     rules.forEach(rule => {

@@ -3,7 +3,7 @@ const resultTree = document.getElementById('result-tree');
 const pattern = new RegExp("^[a-z]*[A-Z]?$");
 let tryAgain = true;
 
-$(".add-rule").addEventListener("click", (e) => {
+const addRule = () => {
   list.insertAdjacentHTML(
     "beforeend",
     `<div class="max-w-lg p-0.5 mx-auto rule">
@@ -12,6 +12,11 @@ $(".add-rule").addEventListener("click", (e) => {
     <input type="text" placeholder="λ" oninput="validateRule(this)" class="right-rule w-28 bg-gray-200 rounded-lg text-center text-xl pt-0.5" />
   </div>`
   );
+};
+
+$(".add-rule").addEventListener("click", (e) => {
+  e.preventDefault();
+  addRule();
 });
 
 const validateRule = (el) => {
@@ -91,8 +96,6 @@ const validateInput = () => {
     }
     parsedRules[indexLv] += " | " + rv;
   }
-
-  console.log(parsedRules);
 
   /* 
     O código abaixo foi adaptado dos exemplos da biblioteca.
