@@ -31,6 +31,40 @@ function regexToAutomata() {
     // Reseta o autômato
     automata.newthis();
     controller.redraw();
+
+    let x = 30, y = 30;
+
+    // Adiciona os estados
+    converted.states.forEach(state => {
+        automata.addState(x, y, `q${state}`);
+        x += 100;
+        if (x > 500) {
+            x = 30;
+            y += 100;
+        }
+    });
+    
+    // Adiciona as transições
+    let fromState, toState, symbol;
+    converted.transitions.forEach(transition => {
+        transition.toStates.forEach(ts => {
+            fromState = automata.findState(`q${transition.fromState}`);
+            toState = automata.findState(`q${ts}`);
+            // Troca $ por lambda
+            if (transition.symbol === '$') transition.symbol = 'λ';
+            automata.addTransition(fromState, toState, transition.symbol);
+        });
+    });
+
+    // Adiciona os estados finais
+    converted.acceptingStates.forEach(state => {
+        automata.findState(`q${state}`).accept = true;
+    });
+
+    // Seta o estado inicial
+    automata.setStart(automata.findState(`q${converted.initialState}`));
+
+    controller.redraw();
 }
 
 // Adicionando os listeners para as funções
