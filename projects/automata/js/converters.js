@@ -168,8 +168,7 @@ function grammarToAutomata() {
     controller.redraw();
 
     grammarArea.style.display = 'none';
-
-    swal("Sucesso", "Gramática convertida para autômato!", "success");
+    
     clearRules();
 }
 
@@ -288,10 +287,24 @@ function regexToGrammar() {
     automata = oldAutomata;
 }
 
+function grammarToRegex() {
+    const regex_fa = new ExtendedAutomata();
+    // Salva o ponteiro do autômato antigo
+    const oldAutomata = automata;
+    automata = regex_fa;
+    grammarToAutomata();
+    automataToRegex();
+    // Restaura o autômato antigo
+    automata = oldAutomata;
+}
+
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
-toAutomataButton.addEventListener('click', grammarToAutomata);
+toAutomataButton.addEventListener('click', () => {
+    grammarToAutomata();
+    swal("Sucesso", "Gramática convertida para autômato!", "success");
+});
 
 document.querySelector('.close-button').addEventListener('click', () => {
     grammarArea.style.display = 'none';
@@ -357,3 +370,5 @@ document.querySelector('.regexToGrammarButton').addEventListener('click', () => 
         rule.style.pointerEvents = 'none';
     });
 });
+
+document.querySelector('.to-regex').addEventListener('click', grammarToRegex);
