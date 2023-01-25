@@ -98,7 +98,17 @@ const reset = () => {
         resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
 }
 
+const clean = () => {
+    automata.newthis();
+    controller.redraw();
+    resultDiv.innerHTML = '';
+    resultDiv.classList.remove('passed');
+    resultDiv.classList.remove('rejected');
+    stepUserString.value = '';
+}
+
 // Sincroniza as funções com os botões da interface.
 setInputBtn.addEventListener('click', setString);
 stepBtn.addEventListener('click', step);
 resetBtn.addEventListener('click', reset);
+$('.cleanup').addEventListener('click', clean);
