@@ -8,6 +8,10 @@ const addRuleButton = document.querySelector('.add-rule')
 
 function checkRegex() {
     let regexText = regexInput.value;
+    if (!regexText) {
+        swal("Erro", "Regex vazia.", "error");
+        return null;
+    }
     // Tratando o regex para ser aceito pela biblioteca
     // Remove ^ e $
     regexText = regexText.replace(/\^/g, '');
@@ -35,7 +39,6 @@ function regexToAutomata() {
     // Construindo o autômato na interface
     // Reseta o autômato
     automata.newthis();
-    controller.redraw();
 
     let x = 30, y = 30;
 
@@ -246,6 +249,45 @@ function clearRules() {
     rules[0].getElementsByTagName('input')[1].readOnly = false;
 }
 
+function regexToGrammar() {
+    const regex_fa = new ExtendedAutomata();
+    const regex = checkRegex();
+    const converted = noam.re.tree.toAutomaton(regex);
+    console.log(converted)
+    // Adiciona os estados
+    converted.states.forEach(state => {
+        regex_fa.addState(0, 0, `q${state}`);
+    });
+
+    // Adiciona as transições
+    let fromState, toState;
+    converted.transitions.forEach(transition => {
+        transition.toStates.forEach(ts => {
+            fromState = regex_fa.findState(`q${transition.fromState}`);
+            toState = regex_fa.findState(`q${ts}`);
+            // Troca $ por lambda
+            if (transition.symbol === '$') transition.symbol = 'λ';
+            regex_fa.addTransition(fromState, toState, transition.symbol);
+        });
+    });
+
+    // Adiciona os estados finais
+    converted.acceptingStates.forEach(state => {
+        regex_fa.findState(`q${state}`).accept = true;
+    });
+
+    // Seta o estado inicial
+    regex_fa.setStart(regex_fa.findState(`q${converted.initialState}`));
+
+    // Converte o autômato para gramática
+    // Salva o ponteiro do autômato antigo
+    const oldAutomata = automata;
+    automata = regex_fa;
+    automataToGrammar();
+    // Restaura o autômato antigo
+    automata = oldAutomata;
+}
+
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
@@ -270,6 +312,32 @@ document.querySelector('.automataToGrammarButton').addEventListener('click', () 
         automataToGrammar();
     } catch (error) {
         swal("Erro", "Autômato inválido. Por favor, verifique-o.", "error");
+        return;
+    }
+    // Mostra a interface depois de tudo pronto
+    // Mostra entrada de gramática e árvore
+    entradaDiv.classList.remove('displayNone');
+    treeDiv.classList.remove('displayNone');
+    grammarArea.style.display = 'block';
+    toAutomataButton.style.display = 'none';
+    addRuleButton.style.display = 'none';
+    // Congela pós escrita
+    const rules = document.querySelectorAll('.rule');
+    let inputs;
+    rules.forEach(rule => {
+        inputs = rule.getElementsByTagName('input');
+        inputs[0].readOnly = true;
+        inputs[1].readOnly = true;
+        rule.style.pointerEvents = 'none';
+    });
+});
+
+document.querySelector('.regexToGrammarButton').addEventListener('click', () => {
+    // Executa a função
+    try {
+        regexToGrammar();
+    } catch (error) {
+        swal("Erro", "Expressão regular inválida. Por favor, verifique-a.", "error");
         return;
     }
     // Mostra a interface depois de tudo pronto

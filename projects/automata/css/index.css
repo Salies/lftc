@@ -292,6 +292,10 @@ input[type="text"] {
     background-color: rgb(124 58 237);
 }
 
+.regexButton {
+    margin-bottom: 5px;
+}
+
 /* Outros */
 .redBack {
     background-color: rgb(153 27 27);
