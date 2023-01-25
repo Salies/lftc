@@ -178,6 +178,10 @@ function clearRules() {
         if(index !== 0) rule.remove();
     });
     rules[0].getElementsByTagName('input')[1].value = '';
+    // Faz a regra ser selecionável novamente
+    rules[0].style.pointerEvents = 'auto';
+    rules[0].getElementsByTagName('input')[0].readOnly = false;
+    rules[0].getElementsByTagName('input')[1].readOnly = false;
 }
 
 // Adicionando os listeners para as funções
@@ -205,4 +209,12 @@ document.querySelector('.automataToGrammarButton').addEventListener('click', () 
     grammarArea.style.display = 'block';
     toAutomataButton.style.display = 'none';
     addRuleButton.style.display = 'none';
+    const rules = document.querySelectorAll('.rule');
+    let inputs;
+    rules.forEach(rule => {
+        inputs = rule.getElementsByTagName('input');
+        inputs[0].readOnly = true;
+        inputs[1].readOnly = true;
+        rule.style.pointerEvents = 'none';
+    });
 });
