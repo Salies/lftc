@@ -217,7 +217,6 @@ function automataToGrammar() {
     // Adiciona as regras na tela
     clearRules();
     let rulesDivs;
-    console.log(rulesDivs);
     rules.forEach((rule, index) => {
         if(index !== 0) addRule();
         rulesDivs = document.querySelectorAll('.rule');
