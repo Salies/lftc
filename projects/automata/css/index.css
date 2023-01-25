@@ -255,11 +255,7 @@ input[type="text"] {
     margin-bottom:10px;
 }
 
-.entradaDiv {
-    display: none;
-}
-
-.tree {
+.entradaDiv, .tree {
     display: none;
 }
 
@@ -267,11 +263,15 @@ input[type="text"] {
     margin-bottom: 10px;
 }
 
-.grammar-close {
+.close-button {
     position: absolute;
     top: 15px;
     right: 15px;
     cursor: pointer;
+}
+
+.close-g-to-a, .close-a-to-g {
+    display:none;
 }
 
 .specialButton {

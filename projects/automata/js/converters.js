@@ -1,6 +1,10 @@
 const regexInput = document.querySelector('.regexInput')
 const regexOutput = document.querySelector('.regexResult')
 const grammarArea = document.querySelector('#grammar')
+const entradaDiv = document.querySelector('.entradaDiv')
+const treeDiv = document.querySelector('.tree')
+const close_g_to_a = document.querySelector('.close-g-to-a')
+const close_a_to_g = document.querySelector('.close-a-to-g')
 
 function checkRegex() {
     let regexText = regexInput.value;
@@ -181,11 +185,19 @@ document.querySelector('.regexButton').addEventListener('click', regexToAutomata
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
 document.querySelector('.to-automata').addEventListener('click', grammarToAutomata);
 
-document.querySelector('.grammar-close').addEventListener('click', () => {
+close_g_to_a.addEventListener('click', () => {
+    close_g_to_a.style.display = 'none';
     grammarArea.style.display = 'none';
     clearRules();
 });
 
 document.querySelector('.grammarToAutomataButton').addEventListener('click', () => {
     grammarArea.style.display = 'block';
+    close_g_to_a.style.display = 'block';
+});
+
+document.querySelector('.automataToGrammarButton').addEventListener('click', () => {
+    // Mostra entrada de gramática e árvore
+    entradaDiv.style.display = 'block';
+    treeDiv.style.display = 'block';
 });
