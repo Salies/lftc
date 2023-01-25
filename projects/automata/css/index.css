@@ -202,7 +202,87 @@ input[type="text"] {
     background-color: rgb(244 244 245);
 }
 
+/* Área de gramática */
+#grammar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    top: 0;
+    left:0;
+    z-index:999;
+    color: #fff;
+}
+
+#grammar > section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgb(55 48 163);
+    width:300px;
+    position: relative;
+    border-radius: 10px;
+    /* align center */
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#grammar button {
+    background-color: rgb(99 102 241)
+}
+
+#grammar > section > h1 {
+    padding: 10px 0;
+}
+
+#grammar > section > div.flex.flex-col.mx-auto > div > input{
+    width:15rem!important;
+}
+
+#grammar input[type="text"] {
+    width: 6rem!important;
+}
+
+.rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom:10px;
+}
+
+.entradaDiv {
+    display: none;
+}
+
+.tree {
+    display: none;
+}
+
+.add-rule {
+    margin-bottom: 10px;
+}
+
+.grammar-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.specialButton {
+    background-color: rgb(124 58 237);
+}
+
 /* Outros */
 .redBack {
     background-color: rgb(153 27 27);
+}
+
+.bg-green-500{
+    background-color: rgb(16 185 129);
 }

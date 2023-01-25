@@ -7,6 +7,8 @@
     <title>LFTC - Simulador de autômatos finitos</title>
     <link rel="stylesheet" href="css/minireset.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../grammar/css/tree.css">
+    <link rel="stylesheet" href="../grammar/css/grammar.css">
 </head>
 <body>
     <section class="return">
@@ -14,6 +16,33 @@
     </section>
 
     <h1>Simulador de autômatos finitos</h1>
+
+    <div id="grammar">
+        <section class="flex flex-col">
+            <div class="flex flex-col mx-auto entradaDiv">
+              <div class="mt-5 flex flex-col items-center">
+                <h1 class="text-lg -mb-2 leading-none font-light text-white">Entrada:</h1>
+                <input type="text" placeholder="λ" class="border-2 user-input rounded-lg text-lg mt-3 p-2 w-96" oninput="validateInput()" />
+              </div>
+            </div>
+            <h1 class="text-lg leading-none font-light mt-10 text-white">Gramática</h1>
+            <button class="to-automata bg-yellow-300 rounded-lg text-lg p-1 w-48 mx-auto my-3">Converter para autômato</button>
+            <button class="add-rule bg-yellow-300 rounded-lg text-lg p-1 w-48 mx-auto my-3">Adicionar regra</button>
+            <ul class="list">
+              <div class="max-w-lg pt-0.5 mx-auto rule">
+                <input type="text" value="S" readonly class="w-16 bg-gray-200 rounded-lg text-center text-xl py-0.5" />
+                <span>→</span>
+                <input type="text" placeholder="λ" oninput="validateRule(this)" class="right-rule w-28 bg-gray-200 rounded-lg text-center text-xl pt-0.5" />
+              </div>
+            </ul>
+            <div class="tree" id="result-tree"></div>
+            <div class="close-button">
+                <svg role="img" fill="white" height="16" width="16" aria-hidden="true" aria-label="Fechar" viewBox="0 0 16 16" data-encore-id="icon" class="grammar-close">
+                    <path d="M1.47 1.47a.75.75 0 011.06 0L8 6.94l5.47-5.47a.75.75 0 111.06 1.06L9.06 8l5.47 5.47a.75.75 0 11-1.06 1.06L8 9.06l-5.47 5.47a.75.75 0 01-1.06-1.06L6.94 8 1.47 2.53a.75.75 0 010-1.06z"></path>
+                </svg>
+            </div>
+          </section>
+    </div>
 
     <div id="wrapper">
         <div class="automata" id="canvasDiv"></div>
@@ -42,6 +71,14 @@
                 <button class="automataToRegexButton takeAll">Converter</button>
             </div>
 
+            <div>
+                <button class="takeAll specialButton">Gramática para autômato</button>
+            </div>
+
+            <div>
+                <button class="takeAll specialButton">Autômato para gramática</button>
+            </div>
+
             <!-- Botão de limpeza -->
             <div>
                 <button class="cleanup takeAll redBack">Limpar</button>
@@ -58,5 +95,7 @@
     <script src="js/lib/noam.min.js"></script>
     <script src="js/automata.js"></script>
     <script src="js/converters.js"></script>
+    <script src="../grammar/js/tiny.js"></script>
+    <script src="../grammar/js/grammar.js"></script>
 </body>
 </html>

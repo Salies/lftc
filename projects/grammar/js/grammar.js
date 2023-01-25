@@ -92,6 +92,8 @@ const validateInput = () => {
     parsedRules[indexLv] += " | " + rv;
   }
 
+  console.log(parsedRules);
+
   /* 
     O código abaixo foi adaptado dos exemplos da biblioteca.
     É parcialmente de nossa autoria, mas por não ter originado de nós, deixamos os
@@ -119,7 +121,7 @@ const validateInput = () => {
         displayTree(trees[tree]) +
         '</ul></div></br>';
     }
-    return;
+    return true;
   }
 
   if(parsedRules.join("").includes("λ") && tryAgain){

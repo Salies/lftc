@@ -87,6 +87,21 @@ function automataToRegex() {
     }
 }
 
+function grammarToAutomata() {
+    if(validateAllRules() === false) return;
+    console.log('bora!!!')
+    const rules = document.querySelectorAll(".rule");
+    let children;
+    rules.forEach(rule => {
+        children = rule.getElementsByTagName('input');
+        console.log(children[0].value, children[1].value)
+    });
+}
+
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
+document.querySelector('.to-automata').addEventListener('click', grammarToAutomata);
+document.querySelector('.grammar-close').addEventListener('click', () => {
+    document.querySelector('#grammar').style.display = 'none';
+});
