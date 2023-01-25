@@ -1,4 +1,5 @@
-const regexInput = document.getElementsByClassName('regexInput')[0];
+const regexInput = document.querySelector('.regexInput')
+const regexOutput = document.querySelector('.regexResult')
 
 function checkRegex() {
     let regexText = regexInput.value;
@@ -68,11 +69,24 @@ function regexToAutomata() {
 }
 
 function automataToRegex() {
-    const automata = controller.getAutomata();
-    const converted = noam.fsa.automaton.toRegex(automata);
-    console.log(converted);
-    swal("Resultado", converted, "success");
+    const automataString = automata.toString();
+    let fsm, regex;
+    try {
+        fsm = noam.fsm.parseFsmFromString(automataString);
+        fsm = noam.fsm.minimize(fsm);
+        regex = noam.fsm.toRegex(fsm);
+        regex = noam.re.tree.simplify(regex, {"useFsmPatterns": true});
+        regex = noam.re.tree.toString(regex);
+        // Substitui + por |, +$ por ?
+        regex = regex.replace(/\+/g, '|');
+        regex = regex.replace(/\+\$/g, '?');
+        regexOutput.value = regex;
+    } catch(error) {
+        swal("Erro", "Autômato inválido", "error");
+        return;
+    }
 }
 
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
+document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);

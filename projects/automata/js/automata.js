@@ -1,6 +1,6 @@
 
 // Cria o autômato base para uso
-const automata = new Automata();
+const automata = new ExtendedAutomata();
 
 // Criando um canvas e colocando ele dentro da div
 const canvas = document.createElement("canvas");
