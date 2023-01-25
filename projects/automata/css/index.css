@@ -212,6 +212,7 @@ input[type="text"] {
     left:0;
     z-index:999;
     color: #fff;
+    display: none;
 }
 
 #grammar > section {

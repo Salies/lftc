@@ -1,5 +1,6 @@
 const regexInput = document.querySelector('.regexInput')
 const regexOutput = document.querySelector('.regexResult')
+const grammarArea = document.querySelector('#grammar')
 
 function checkRegex() {
     let regexText = regexInput.value;
@@ -88,20 +89,88 @@ function automataToRegex() {
 }
 
 function grammarToAutomata() {
-    if(validateAllRules() === false) return;
-    console.log('bora!!!')
+    if(validateAllRules() === false){
+        swal("Erro", "Gramática inválida.", "error");
+        return;
+    };
     const rules = document.querySelectorAll(".rule");
-    let children;
+    let children, lv, rv, rvUp, rvLo, states = ['Z'], transitions = [];
     rules.forEach(rule => {
         children = rule.getElementsByTagName('input');
-        console.log(children[0].value, children[1].value)
+        lv = children[0].value;
+        rv = children[1].value;
+        // Se lv não for um estado, adiciona
+        if(!states.includes(lv)) states.push(lv);
+        rvUp = rv.match(/[A-Z]/g);
+        if(rvUp) rvUp = rvUp[0];
+        if(rvUp && !states.includes(rvUp)) states.push(rvUp)
+        // Agora filtrando os lowercase para pegar transições
+        rvLo = rv.match(/[a-z]/g);
+        if(rvLo && rvUp) {
+            rvLo.forEach(symbol => {
+                transitions.push({fromState: lv, toState: rvUp, symbol: symbol});
+            });
+            return;
+        }
+
+        if(rvLo && !rvUp) {
+            rvLo.forEach(symbol => {
+                transitions.push({fromState: lv, toState: 'Z', symbol: symbol});
+            });
+            return;
+        }
+
+        if(!rvLo && rvUp) {
+            transitions.push({fromState: lv, toState: rvUp, symbol: 'λ'});
+            return;
+        }
+
+        transitions.push({fromState: lv, toState: 'Z', symbol: 'λ'});
     });
+    
+    // Adiciona os estados
+    let x = 30, y = 30;
+    automata.newthis();
+
+    states.forEach(state => {
+        automata.addState(x, y, state);
+        x += 100;
+        if (x > 500) {
+            x = 30;
+            y += 100;
+        }
+    });
+
+    // Adiciona as transições
+    let fromState, toState;
+    transitions.forEach(transition => {
+        fromState = automata.findState(transition.fromState);
+        toState = automata.findState(transition.toState);
+        automata.addTransition(fromState, toState, transition.symbol);
+    });
+
+    // Adiciona os estados finais
+    automata.findState('Z').accept = true;
+
+    // Seta o estado inicial
+    automata.setStart(automata.findState('S'));
+
+    controller.redraw();
+
+    grammarArea.style.display = 'none';
+
+    swal("Sucesso", "Gramática convertida para autômato!", "success");
 }
 
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);
 document.querySelector('.automataToRegexButton').addEventListener('click', automataToRegex);
 document.querySelector('.to-automata').addEventListener('click', grammarToAutomata);
+
 document.querySelector('.grammar-close').addEventListener('click', () => {
-    document.querySelector('#grammar').style.display = 'none';
+    grammarArea.style.display = 'none';
+});
+
+document.querySelector('.grammarToAutomataButton').addEventListener('click', () => {
+    grammarArea.style.display = 'block';
 });
