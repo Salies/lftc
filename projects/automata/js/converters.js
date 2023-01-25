@@ -67,5 +67,12 @@ function regexToAutomata() {
     controller.redraw();
 }
 
+function automataToRegex() {
+    const automata = controller.getAutomata();
+    const converted = noam.fsa.automaton.toRegex(automata);
+    console.log(converted);
+    swal("Resultado", converted, "success");
+}
+
 // Adicionando os listeners para as funções
 document.querySelector('.regexButton').addEventListener('click', regexToAutomata);

@@ -155,7 +155,7 @@ input[type="text"] {
     margin-left: 5px;
 }
 
-.addStateMenu > div:first-of-type, .addTransitionMenu > div, .regexInput {
+.addStateMenu > div:first-of-type, .addTransitionMenu > div, .regexInput, .regexResult {
     margin-bottom:5px;
 }
 
@@ -197,6 +197,10 @@ input[type="text"] {
 }
 
 /* Conversões */
+.regexResult {
+    pointer-events:none;
+    background-color: rgb(244 244 245);
+}
 
 /* Outros */
 .redBack {
