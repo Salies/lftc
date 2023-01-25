@@ -52,6 +52,12 @@ const setString = () => {
 
 // Faz um passo na validação da string no autômato.
 const step = () => {
+    if(automata.states.filter(state => state.current).length === 0){
+        setAsRejected();
+        resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
+        return;
+    }
+
     // Retira o destaque do anterior
     if(automata.inputIndex > 0)
         resultDiv.childNodes[automata.inputIndex - 1].classList.remove('current');
