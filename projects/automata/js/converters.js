@@ -164,6 +164,16 @@ function grammarToAutomata() {
     grammarArea.style.display = 'none';
 
     swal("Sucesso", "Gramática convertida para autômato!", "success");
+    clearRules();
+}
+
+function clearRules() {
+    // Exclui todos as rules, deixando apenas uma
+    const rules = document.querySelectorAll('.rule');
+    rules.forEach((rule, index) => {
+        if(index !== 0) rule.remove();
+    });
+    rules[0].getElementsByTagName('input')[1].value = '';
 }
 
 // Adicionando os listeners para as funções
@@ -173,12 +183,7 @@ document.querySelector('.to-automata').addEventListener('click', grammarToAutoma
 
 document.querySelector('.grammar-close').addEventListener('click', () => {
     grammarArea.style.display = 'none';
-    // Exclui todos as rules, deixando apenas uma
-    const rules = document.querySelectorAll('.rule');
-    rules.forEach((rule, index) => {
-        if(index !== 0) rule.remove();
-    });
-    rules[0].getElementsByTagName('input')[1].value = '';
+    clearRules();
 });
 
 document.querySelector('.grammarToAutomataButton').addEventListener('click', () => {
