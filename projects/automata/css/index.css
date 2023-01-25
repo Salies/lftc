@@ -155,7 +155,7 @@ input[type="text"] {
     margin-left: 5px;
 }
 
-.addStateMenu > div:first-of-type, .addTransitionMenu > div {
+.addStateMenu > div:first-of-type, .addTransitionMenu > div, .regexInput {
     margin-bottom:5px;
 }
 
@@ -195,3 +195,5 @@ input[type="text"] {
     color: #db2777!important;
     font-weight: 600;
 }
+
+/* Conversões */
