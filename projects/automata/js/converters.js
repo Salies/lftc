@@ -183,26 +183,27 @@ function automataToGrammar() {
         swal("Erro", "Autômato com muitos estados. Por favor, simplifique-o.", "error");
         return;
     }
-    // Faz uma cópia do autômato
-    let automataCopy = Object.assign(Object.create(Object.getPrototypeOf(automata)), automata);
+
+    // Salva os nomes dos estados
+    const stateNames = automata.states.map(state => state.label);
+
     // Para cada estado, seta uma letra maiúscula diferente do alfabeto
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    automataCopy.states.forEach((state, index) => {
+    automata.states.forEach((state, index) => {
         state.label = alphabet[index];
     });
     // Pega o estado que está com a letra S e troca a label dele com o estado inicial
-    console.log(automataCopy);
-    const sState = automataCopy.states.find(state => state.label == 'S');
-    if (sState) sState.label = automataCopy.startState.label;
-    automataCopy.startState.label = 'S';
+    const sState = automata.states.find(state => state.label == 'S');
+    if (sState) sState.label = automata.startState.label;
+    automata.startState.label = 'S';
     // Agora, vamos à construção da gramática
     let rules = [];
     // Adiciona as regras de transição
-    automataCopy.transitions.forEach(t => {
+    automata.transitions.forEach(t => {
         rules.push(transitionToRule(t));
     });
     // Verifica se os estados são finais
-    automataCopy.states.forEach(state => {
+    automata.states.forEach(state => {
         if(state.accept) rules.push([state.label, 'λ']);
     });
     
@@ -226,6 +227,11 @@ function automataToGrammar() {
     });
 
     validateInput();
+
+    // Restaura os nomes dos estados
+    automata.states.forEach((state, index) => {
+        state.label = stateNames[index];
+    });
 }
 
 function clearRules() {
